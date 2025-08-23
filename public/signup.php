@@ -1,6 +1,6 @@
 <?php
 
-    
+
 
 ?>
 
@@ -51,12 +51,13 @@
             <div class="mb-3">
                 <input type="password" class="form-control" name="password" placeholder="Password" required>
             </div>
-            <div class="d-grid mb-3">
-                <button type="submit" class="btn btn-action">Create Account</button>
-            </div>
             <p class="text-center">
                 <a href="login.php">Login</a>
             </p>
+            <div class="d-grid mb-3">
+                <button type="submit" class="btn btn-action rounded-pill">Create Account</button>
+            </div>
+            
         </form>
     </div>
 </body>
