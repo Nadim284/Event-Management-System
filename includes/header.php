@@ -35,7 +35,7 @@
     <!-- Left: TOP-LEFT LOGO -->
     <div class="ems-header-left">
       <a href="/index.php" class="navbar-brand d-flex align-items-center">
-        <img src="../assets/logo.png" alt="EMS Logo" class="ems-logo-img">
+        <img src="../includes/assets/logo.png" alt="EMS Logo" class="ems-logo-img">
       </a>
     </div>
 
