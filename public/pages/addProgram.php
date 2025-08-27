@@ -102,8 +102,8 @@
 
 </head>
 <body class="with-ems-layout">
-  <?php include("../includes/header.php"); ?>
-  <?php include("../includes/sidebar.php"); ?>
+  <?php include("../../includes/header.php"); ?>
+  <?php include("../../includes/sidebar.php"); ?>
 
   <main class="ems-main">
     <div class="container-fluid">      
