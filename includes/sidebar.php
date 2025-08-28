@@ -62,7 +62,7 @@ $currentPage = $map[$currentFile] ?? '';
 <aside class="ems-sidebar">
   <!-- Logo fixed at top -->
   <div class="ems-logo">
-    <img src="../../includes/assets/logo.png" alt="Logo" class="ems-logo-img">
+    <img src="<?php echo BASE_URL; ?>includes/assets/logo.png" alt="Logo" class="ems-logo-img">
 
   </div>
 

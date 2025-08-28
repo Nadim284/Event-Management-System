@@ -1,5 +1,6 @@
 <?php
 // public/pages/authenticate.php
+include_once __DIR__ . "/../config.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
