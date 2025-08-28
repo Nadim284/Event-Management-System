@@ -70,22 +70,22 @@ $currentPage = $map[$currentFile] ?? '';
     <div class="ems-section">Main</div>
     <ul class="ems-menu">
       <li class="ems-item">
-        <a href="/deshbroad.php" class="<?= $currentPage === 'home' ? 'active' : '' ?>">
+        <a href="../public/dashboard.php" class="<?= $currentPage === 'home' ? 'active' : '' ?>">
           <span class="ems-icon">🏠</span><span>Home</span>
         </a>
       </li>
       <li class="ems-item">
-        <a href="/addProgram.php" class="<?= $currentPage === 'addProgram' ? 'active' : '' ?>">
+        <a href="../public/pages/addProgram.php" class="<?= $currentPage === 'addProgram' ? 'active' : '' ?>">
           <span class="ems-icon">➕</span><span>Add Program</span>
         </a>
       </li>
       <li class="ems-item">
-        <a href="/public/signup.php" class="<?= $currentPage === 'remove_program' ? 'active' : '' ?>">
+        <a href="../public/pages/removeProgram.php" class="<?= $currentPage === 'remove_program' ? 'active' : '' ?>">
           <span class="ems-icon">🗑️</span><span>Remove Program</span>
         </a>
       </li>
       <li class="ems-item">
-        <a href="/public/deshbroad.php" class="<?= $currentPage === 'mail' ? 'active' : '' ?>">
+        <a href="../public/pages/mail.php" class="<?= $currentPage === 'mail' ? 'active' : '' ?>">
           <span class="ems-icon">📬</span><span>Mail</span>
         </a>
       </li>
@@ -93,8 +93,8 @@ $currentPage = $map[$currentFile] ?? '';
 
     <div class="ems-section">Access</div>
     <ul class="ems-menu">
-      <li class="ems-item"><a href="#"><span class="ems-icon">✅</span><span>Authenticate</span></a></li>
-      <li class="ems-item"><a href="#"><span class="ems-icon">👥</span><span>Invite</span></a></li>
+      <li class="ems-item"><a href="../public/pages/authentication.php"><span class="ems-icon">✅</span><span>Authenticate</span></a></li>
+      <li class="ems-item"><a href="../public/pages/invite.php""><span class="ems-icon">👥</span><span>Invite</span></a></li>
       <li class="ems-item"><a href="#"><span class="ems-icon">📦</span><span>Allocate</span></a></li>
     </ul>
   </nav>
