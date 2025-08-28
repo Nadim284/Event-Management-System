@@ -1,54 +1,49 @@
 <?php
-// Detect current file
-$currentFile = basename($_SERVER['SCRIPT_NAME'], ".php");
+// ===== Configure once =====
+// If your app lives at http://localhost/Event-Management-System
+$BASE = '/Event-Management-System'; // <-- change to '' if app is at web root
 
-// Map file names to menu keys
+// Detect current php file name without extension (works for nested paths too)
+$currentFile = basename($_SERVER['SCRIPT_NAME'], '.php');
+
+// Map file names to menu keys for "active" highlight
 $map = [
-    'deshbroad'     => 'home',
-    'addProgram'     => 'Add Program'
-
+  'dashboard'       => 'home',         // public/dashboard.php
+  'deshbroad'       => 'home',         // if you still use this name anywhere
+  'addProgram'      => 'addProgram',   // public/pages/addProgram.php
+  'removeProgram'   => 'removeProgram',// public/pages/removeProgram.php
+  'mail'            => 'mail',         // public/pages/mail.php
+  'authentication'  => 'authentication', // public/pages/authentication.php
+  'invite'          => 'invite',       // public/pages/invite.php
 ];
 
-// Resolve current page key
 $currentPage = $map[$currentFile] ?? '';
-?>
 
+function active($key, $currentPage) {
+  return $key === $currentPage ? 'active' : '';
+}
+?>
 <style>
   .ems-sidebar {
-  width: var(--ems-sidebar-w, 280px);
-  height: 100vh;            /* take full viewport height */
-  position: fixed;
-  inset: 0 auto 0 0;        /* stick to left */
-  background: #000;
-  color: #fff;
-  display: flex;
-  flex-direction: column;
-  box-sizing: border-box;
-  padding: 0;
-  z-index: 1040;
-  overflow-y: auto;         /* enable scrolling inside if menu is long */
-}
-
-
-  /* Logo container */
+    width: var(--ems-sidebar-w, 280px);
+    height: 100vh;
+    position: fixed;
+    inset: 0 auto 0 0;
+    background: #000;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    padding: 0;
+    z-index: 1040;
+    overflow-y: auto;
+  }
   .ems-logo {
-    position: sticky;   /* stays at top while scrolling */
-    top: 0;
-    background: #000;   /* same bg as sidebar */
-    padding: 20px 16px;
-    text-align: center;
-    z-index: 1050;      /* above nav */
+    position: sticky; top: 0; background:#000; padding: 20px 16px; text-align:center; z-index:1050;
   }
-
-  .ems-logo img {
-    max-width: 120px;
-    height: auto;
-  }
-
-  /* Menu styles */
+  .ems-logo img { max-width: 140px; height: auto; }
   .ems-menu { list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:8px; }
   .ems-section { font-size:12px; letter-spacing:.06em; text-transform:uppercase; color:#9aa0a6; margin:16px 12px 6px; }
-
   .ems-item a {
     display:flex; align-items:center; gap:10px;
     padding:10px 12px; margin:4px 8px; border-radius:10px;
@@ -57,13 +52,15 @@ $currentPage = $map[$currentFile] ?? '';
   .ems-item a:hover  { background:#1a1a1a; }
   .ems-item a.active { background:#222; border:1px solid #333; }
   .ems-icon { width:22px; text-align:center; }
+  /* layout helper for main area */
+  .with-ems-layout .ems-main { margin-left: var(--ems-sidebar-w, 280px); padding: 20px; }
 </style>
 
 <aside class="ems-sidebar">
-  <!-- Logo fixed at top -->
+  <!-- Logo -->
   <div class="ems-logo">
-    <img src="../../includes/assets/logo.png" alt="Logo" class="ems-logo-img">
-
+    <!-- Using BASE so this path works from any page -->
+    <img src="<?= $BASE ?>/includes/assets/logo.png" alt="Logo" class="ems-logo-img">
   </div>
 
   <!-- Navigation -->
@@ -71,22 +68,22 @@ $currentPage = $map[$currentFile] ?? '';
     <div class="ems-section">Main</div>
     <ul class="ems-menu">
       <li class="ems-item">
-        <a href="../public/dashboard.php" class="<?= $currentPage === 'home' ? 'active' : '' ?>">
+        <a href="<?= $BASE ?>/public/dashboard.php" class="<?= active('home', $currentPage) ?>">
           <span class="ems-icon">🏠</span><span>Home</span>
         </a>
       </li>
       <li class="ems-item">
-        <a href="../public/pages/addProgram.php" class="<?= $currentPage === 'addProgram' ? 'active' : '' ?>">
+        <a href="<?= $BASE ?>/public/pages/addProgram.php" class="<?= active('addProgram', $currentPage) ?>">
           <span class="ems-icon">➕</span><span>Add Program</span>
         </a>
       </li>
       <li class="ems-item">
-        <a href="../public/pages/removeProgram.php" class="<?= $currentPage === 'remove_program' ? 'active' : '' ?>">
+        <a href="<?= $BASE ?>/public/pages/removeProgram.php" class="<?= active('removeProgram', $currentPage) ?>">
           <span class="ems-icon">🗑️</span><span>Remove Program</span>
         </a>
       </li>
       <li class="ems-item">
-        <a href="../public/pages/mail.php" class="<?= $currentPage === 'mail' ? 'active' : '' ?>">
+        <a href="<?= $BASE ?>/public/pages/mail.php" class="<?= active('mail', $currentPage) ?>">
           <span class="ems-icon">📬</span><span>Mail</span>
         </a>
       </li>
@@ -94,9 +91,23 @@ $currentPage = $map[$currentFile] ?? '';
 
     <div class="ems-section">Access</div>
     <ul class="ems-menu">
-      <li class="ems-item"><a href="../public/pages/authentication.php"><span class="ems-icon">✅</span><span>Authenticate</span></a></li>
-      <li class="ems-item"><a href="../public/pages/invite.php""><span class="ems-icon">👥</span><span>Invite</span></a></li>
-      <li class="ems-item"><a href="#"><span class="ems-icon">📦</span><span>Allocate</span></a></li>
+      <li class="ems-item">
+        <a href="<?= $BASE ?>/public/pages/authentication.php" class="<?= active('authentication', $currentPage) ?>">
+          <span class="ems-icon">✅</span><span>Authenticate</span>
+        </a>
+      </li>
+      <li class="ems-item">
+        <!-- fixed the extra quote -->
+        <a href="<?= $BASE ?>/public/pages/invite.php" class="<?= active('invite', $currentPage) ?>">
+          <span class="ems-icon">👥</span><span>Invite</span>
+        </a>
+      </li>
+      <li class="ems-item">
+        <!-- placeholder route; update target when you create allocate.php -->
+        <a href="<?= $BASE ?>/public/pages/allocate.php" class="<?= active('allocate', $currentPage) ?>">
+          <span class="ems-icon">📦</span><span>Allocate</span>
+        </a>
+      </li>
     </ul>
   </nav>
 </aside>
