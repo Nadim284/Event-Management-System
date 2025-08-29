@@ -94,20 +94,8 @@ function active($key, $currentPage) {
     </nav>
   </div>
 
-  <!-- Settings & Logout at bottom -->
-  <div>
-    <div class="ems-section"></div>
-    <ul class="ems-setting">
-      <li class="ems-item">
-        <a href="<?= $BASE ?>/public/pages/setting.php" class="<?= active('setting', $currentPage) ?>">
-          <span class="ems-icon">⚙️</span><span>Settings</span>
-        </a>
-      </li>
-      <li class="ems-item">
-        <a href="<?= $BASE ?>/public/logout.php">
-          <span class="ems-icon">🚪</span><span>Logout</span>
-        </a>
-      </li>
-    </ul>
-  </div>
+  
+
+
+
 </aside>

@@ -1,8 +1,27 @@
 <?php
-// If form is submitted, redirect to dashboard
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    header("Location: dashboard.php");
-    exit;
+    $role = $_POST['role'];
+    $userid = $_POST['userid'];
+    $password = $_POST['password'];
+
+    if ($role === "admin") {
+        // Fixed Admin login
+        $admin_user = "admin";
+        $admin_pass = "admin123"; // fixed password
+
+        if ($userid === $admin_user && $password === $admin_pass) {
+            header("Location: dashboard.php");
+            exit;
+        } else {
+            echo "<script>alert('Invalid Admin credentials!');</script>";
+        }
+
+    } elseif ($role === "user"){
+        // Normal user → redirect to user dashboard
+        // (Here you can later add DB check for users)
+        header("Location: ..\userDashboard\home.php?user=$userid");
+        exit;
+    }
 }
 ?>
 
